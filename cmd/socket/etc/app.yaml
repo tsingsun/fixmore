@@ -1,0 +1,20 @@
+appName: fixmore
+log:
+  config:
+    level: debug
+    disableCaller: true
+    disableStacktrace: true
+    encoding: json
+    outputPaths:
+      - stdout
+      - "logs/test.log"
+    errorOutputPaths:
+      - stderr
+  rotate:
+    maxSize: 1
+    maxage: 1
+    maxbackups: 1
+    localtime: true
+    compress: false
+quickfix:
+  configFilePath: "etc/executor.cfg"
