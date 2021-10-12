@@ -98,7 +98,7 @@ func (f *HSFix) OnFIX42NewOrderSingle(msg fix42nos.NewOrderSingle, sessionID qui
 		)
 
 		execReport.SetClOrdID(clOrdID)
-		execReport.SetOrderQty(decimal.Zero, 2)
+		execReport.SetOrderQty(decimal.NewFromInt(wt.WTSL), 2)
 		execReport.SetLastShares(decimal.Zero, 2)
 		execReport.SetLastPx(decimal.Zero, 2)
 

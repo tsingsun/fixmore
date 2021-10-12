@@ -1,0 +1,15 @@
+symbol:
+  # 恒生
+  hundsun:
+    counterparty: QeelynPB
+    # left is counterparty,right is channel
+    symbolSet:
+      10000: 10000
+      passthrough: true
+    # left is counterparty,right is channel
+    exchangeSet:
+      XSHG: "1"
+      XSHE: "2"
+      XSSC: "3"
+      XSEC: "4"
+      passthrough: true
