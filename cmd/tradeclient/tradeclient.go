@@ -99,11 +99,11 @@ func execute(c *cli.Context) error {
 	//router.LoadHTMLGlob("tmpl/*")
 	router.POST("/orders", app.newOrder)
 	router.GET("/orders", app.getOrders)
-	router.GET("/orders/{id:[0-9]+}", app.getOrder)
-	router.DELETE("/orders/{id:[0-9]+}", app.deleteOrder)
+	router.GET("/orders/:id", app.getOrder)
+	router.DELETE("/orders/:id", app.deleteOrder)
 
 	router.GET("/executions", app.getExecutions)
-	router.GET("/executions/{id:[0-9]+}", app.getExecution)
+	router.GET("/executions/:id", app.getExecution)
 
 	router.POST("/securitydefinitionrequest", app.newSecurityDefintionRequest)
 
@@ -214,6 +214,8 @@ func (c tradeClient) getExecution(ctx *gin.Context) {
 }
 
 func (c tradeClient) deleteOrder(ctx *gin.Context) {
+	c.RLock()
+	defer c.RUnlock()
 	order, err := c.fetchRequestedOrder(ctx)
 	if err != nil {
 		ctx.AbortWithError(http.StatusNotFound, err)
@@ -237,10 +239,14 @@ func (c tradeClient) deleteOrder(ctx *gin.Context) {
 }
 
 func (c tradeClient) getOrders(ctx *gin.Context) {
+	c.RLock()
+	defer c.RUnlock()
 	ctx.JSON(http.StatusOK, c.GetAll())
 }
 
 func (c tradeClient) getExecutions(ctx *gin.Context) {
+	c.RLock()
+	defer c.RUnlock()
 	ctx.JSON(http.StatusOK, c.GetAllExecutions())
 }
 

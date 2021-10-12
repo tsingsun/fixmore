@@ -4,6 +4,8 @@ go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.4
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/pkg/errors v0.9.1
 	github.com/quickfixgo/enum v0.0.0-20210629025633-9afc8539baba
 	github.com/quickfixgo/field v0.0.0-20171007195410-74cea5ec78c7
 	github.com/quickfixgo/fix40 v0.0.0-20171007200002-cce875b2c2e7
@@ -15,7 +17,8 @@ require (
 	github.com/quickfixgo/quickfix v0.6.1-0.20210618140103-31f5ebe90229
 	github.com/quickfixgo/tag v0.0.0-20171007194743-cbb465760521
 	github.com/shopspring/decimal v1.2.0
-	github.com/tsingsun/woocoo v0.0.0-20210928054511-d9577500d842
+	github.com/svolodeev/xbase v0.9.1
+	github.com/tsingsun/woocoo v0.0.0-20211011020005-9b1af08c9d1a
 	github.com/urfave/cli/v2 v2.3.0
 )
 
@@ -44,7 +47,6 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/quickfixgo/fixt11 v0.0.0-20171007213433-d9788ca97f5d // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect

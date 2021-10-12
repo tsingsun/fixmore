@@ -1,4 +1,4 @@
-package fixmore
+package apps
 
 import (
 	"fmt"
@@ -12,44 +12,44 @@ import (
 	"strconv"
 )
 
-var _ quickfix.Application = (*Fix)(nil)
+var _ quickfix.Application = (*DemoFix)(nil)
 
-type Fix struct {
+type DemoFix struct {
 	*quickfix.MessageRouter
 	orderID int
 	execID  int
 }
 
-func NewFix() *Fix {
-	f := &Fix{MessageRouter: quickfix.NewMessageRouter()}
+func NewDemoFix() *DemoFix {
+	f := &DemoFix{MessageRouter: quickfix.NewMessageRouter()}
 	f.AddRoute(fix42nos.Route(f.OnFIX42NewOrderSingle))
 	return f
 }
 
 //quickfix.Application interface
-func (Fix) OnCreate(sessionID quickfix.SessionID)                           {}
-func (Fix) OnLogon(sessionID quickfix.SessionID)                            {}
-func (Fix) OnLogout(sessionID quickfix.SessionID)                           {}
-func (Fix) ToAdmin(msg *quickfix.Message, sessionID quickfix.SessionID)     {}
-func (Fix) ToApp(msg *quickfix.Message, sessionID quickfix.SessionID) error { return nil }
-func (Fix) FromAdmin(msg *quickfix.Message, sessionID quickfix.SessionID) quickfix.MessageRejectError {
+func (DemoFix) OnCreate(sessionID quickfix.SessionID)                           {}
+func (DemoFix) OnLogon(sessionID quickfix.SessionID)                            {}
+func (DemoFix) OnLogout(sessionID quickfix.SessionID)                           {}
+func (DemoFix) ToAdmin(msg *quickfix.Message, sessionID quickfix.SessionID)     {}
+func (DemoFix) ToApp(msg *quickfix.Message, sessionID quickfix.SessionID) error { return nil }
+func (DemoFix) FromAdmin(msg *quickfix.Message, sessionID quickfix.SessionID) quickfix.MessageRejectError {
 	return nil
 }
-func (f *Fix) FromApp(msg *quickfix.Message, sessionID quickfix.SessionID) quickfix.MessageRejectError {
+func (f *DemoFix) FromApp(msg *quickfix.Message, sessionID quickfix.SessionID) quickfix.MessageRejectError {
 	return f.Route(msg, sessionID)
 }
 
-func (f *Fix) genOrderID() field.OrderIDField {
+func (f *DemoFix) genOrderID() field.OrderIDField {
 	f.orderID++
 	return field.NewOrderID(strconv.Itoa(f.orderID))
 }
 
-func (f *Fix) genExecID() field.ExecIDField {
+func (f *DemoFix) genExecID() field.ExecIDField {
 	f.execID++
 	return field.NewExecID(strconv.Itoa(f.execID))
 }
 
-func (f *Fix) OnFIX42NewOrderSingle(msg fix42nos.NewOrderSingle, sessionID quickfix.SessionID) (err quickfix.MessageRejectError) {
+func (f *DemoFix) OnFIX42NewOrderSingle(msg fix42nos.NewOrderSingle, sessionID quickfix.SessionID) (err quickfix.MessageRejectError) {
 	ordType, err := msg.GetOrdType()
 	if err != nil {
 		return err

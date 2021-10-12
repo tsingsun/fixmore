@@ -28,9 +28,9 @@
     <script src="/assets/js/site.js"></script>
     <script type="text/javascript">
 var bootstrap = {
-  session_ids: {{ .SessionsAsJSON }},
-  orders: {{ .OrdersAsJSON }},
-  executions: {{ .ExecutionsAsJSON }}
+  session_ids: JSON.parse({{ .SessionsAsJSON }}),
+  orders: JSON.parse({{ .OrdersAsJSON }}),
+  executions: JSON.parse({{ .ExecutionsAsJSON }})
 };
 
 App.render();

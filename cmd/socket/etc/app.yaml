@@ -1,4 +1,5 @@
 appName: fixmore
+development: true
 log:
   config:
     level: debug
@@ -16,5 +17,24 @@ log:
     maxbackups: 1
     localtime: true
     compress: false
+includeFiles:
+  - etc/symbol.yaml
+
 quickfix:
   configFilePath: "etc/executor.cfg"
+# 恒生配置
+hundsun:
+  dbfdir: "/Users/tsingsun/Projects/tsingsun/fixmore/test/data/dbf"
+  # key: fix tag1;
+  accountMap:
+    1000:
+      # 资金账号
+      ZJZH: "02510006"
+      # 产品代码
+      CPBH: "00080003"
+      # 上海股东代码
+      SHAGDDM: "B881182401"
+      # 深圳股东代码
+      ZZAGDDM: "0800049247"
+      # 单元编号
+      ZCDYBH: "1"
